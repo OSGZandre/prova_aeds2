@@ -1,22 +1,22 @@
 package com.example.app;
 
-public class Elemento {
-    private int valor;
-    private Elemento proximo;
-    public Elemento(int valor) {
+public class Elemento<E> {
+    private E valor;
+    private Elemento<E> proximo;
+    public Elemento(E valor) {
         this.valor = valor;
         this.proximo = null;
     }
-    public int getValor() {
+    public E getValor() {
         return valor;
     }
-    public Elemento getProximo() {
+    public Elemento<E> getProximo() {
         return proximo;
     }
-    public void setValor(int valor) {
+    public void setValor(E valor) {
         this.valor = valor;
     }
-    public void setProximo(Elemento proximo) {
+    public void setProximo(Elemento<E> proximo) {
         this.proximo = proximo;
     }
     

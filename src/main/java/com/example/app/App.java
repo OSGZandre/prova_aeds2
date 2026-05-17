@@ -3,8 +3,12 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        ListaEncadeada lista = new ListaEncadeada();
-
+        ListaEncadeada<Integer> lista = new ListaEncadeada<>();
+        IteratorListaLigada<Integer> iterador = lista.iterator();
+        while(iterador.temProximo()){
+            iterador.getProximo(); 
+        }
+        
         try (Scanner scanner = new Scanner(System.in)) {
             while (true) {
                 System.out.print("Digite o valor a ser adicionado: ");
@@ -20,16 +24,20 @@ public class App {
                 }
             }
         }
-
+        System.out.println("Iterando sobre a lista:");
         if (lista.getTamanho() == 0) {
             System.out.println("Lista vazia.");
             return;
         }
-
+        lista.remover(20);
+        lista.remover(80);
+        System.out.println("tamanho: " + lista.getTamanho());
         System.out.println("Primeiro: " + lista.getPrimeiro().getValor() + " | tamanho: " + lista.getTamanho());
         System.out.println("Último: " + lista.getUltimo().getValor() + " | tamanho: " + lista.getTamanho());
         for (int i = 0; i < lista.getTamanho(); i++) {
             System.out.println(i + " " +lista.get(i).getValor());
         }
+
+
     }
 }
