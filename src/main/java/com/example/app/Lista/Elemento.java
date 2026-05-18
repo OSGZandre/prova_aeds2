@@ -1,4 +1,4 @@
-package com.example.app;
+package com.example.app.Lista;
 
 public class Elemento<E> {
     private E valor;

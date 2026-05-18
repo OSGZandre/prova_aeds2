@@ -1,4 +1,4 @@
-package com.example.app;
+package com.example.app.Lista;
 
 public class IteratorListaLigada<E> {
     private Elemento<E> elemento;

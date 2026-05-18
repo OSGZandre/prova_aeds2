@@ -1,4 +1,4 @@
-package com.example.app;
+package com.example.app.Lista;
 public class ListaEncadeada<E> {
     private Elemento<E> primeiro;
     private Elemento<E> ultimo;
@@ -7,7 +7,7 @@ public class ListaEncadeada<E> {
         this.primeiro = null;
         this.ultimo = null;
         this.tamanho = 0;
-    }
+    }   
 
     public Elemento<E> getPrimeiro() {
         return primeiro;
@@ -37,6 +37,19 @@ public class ListaEncadeada<E> {
         } else {
             this.ultimo.setProximo(novo);
             this.ultimo = novo;
+        }
+        this.tamanho++;
+    }
+
+    public void adicionarComeco(E valor){
+         Elemento<E> novo = new Elemento<>(valor);
+        //verifica se a lista está vazia, se estiver, o novo elemento é o primeiro e o último
+        if(primeiro == null && ultimo == null){
+            this.primeiro = novo;
+            this.ultimo = novo;
+        } else {
+            novo.setProximo(this.primeiro);
+            this.primeiro = novo;
         }
         this.tamanho++;
     }
@@ -84,6 +97,23 @@ public class ListaEncadeada<E> {
         }
     }
 
+    public E removerInicio(){
+        if(this.tamanho == 0){
+            System.out.println("A lista está vazia");
+            return null;
+        }
+        E removido = this.primeiro.getValor();
+
+        this.primeiro = this.primeiro.getProximo();
+        //verifica se a lista ficou vazia após a remoção, se sim, o último também deve ser null
+        if(this.primeiro == null){
+            this.ultimo = null;
+        }
+        
+        this.tamanho--;
+        return removido;
+    }
+
     public IteratorListaLigada<E> iterator(){
         return new IteratorListaLigada<>(this.primeiro);
     }
@@ -92,5 +122,43 @@ public class ListaEncadeada<E> {
         this.primeiro = null;
         this.ultimo = null;
         this.tamanho = 0;
+    }
+
+    public void inserirFinal(E valor){
+        Elemento<E> novo = new Elemento<>(valor);
+        if(primeiro == null && ultimo == null){
+            this.primeiro = novo;
+            this.ultimo = novo;
+        } else {
+            this.ultimo.setProximo(novo);
+            this.ultimo = novo;
+        }
+        this.tamanho++;
+    }
+
+    public void trocar(E itemX, E itemY){
+        if(this.getTamanho() <= 1) {
+            throw new IllegalStateException("A lista está vazia ou contém apenas 1 número.");
+        }
+        Elemento<E> atual = this.primeiro;
+        Elemento<E> celulaX = null;
+        Elemento<E> celulaY = null;
+        for(int i = 0; i < this.tamanho; i++){
+            if (atual.getValor().equals(itemX)) {
+                celulaX = atual;
+            }
+
+            if(atual.getValor().equals(itemY)){
+                celulaY = atual;
+            }
+            atual = atual.getProximo();
+        }
+        if (celulaX == null || celulaY == null) {
+            throw new IllegalArgumentException("Um ou ambos os itens não foram encontrados.");
+        }
+
+        E temp = celulaX.getValor();
+        celulaX.setValor(celulaY.getValor());
+        celulaY.setValor(temp);
     }
 }

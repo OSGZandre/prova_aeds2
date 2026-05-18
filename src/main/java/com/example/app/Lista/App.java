@@ -1,4 +1,4 @@
-package com.example.app;
+package com.example.app.Lista;
 import java.util.Scanner;
 
 public class App {
