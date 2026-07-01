@@ -46,37 +46,37 @@ public class AVL<E extends Comparable<E>> extends ABB<E> {
 		return raizArvore;
 	}
 
-	private No<E> rotacionarDireita(No<E> p) {
+	private No<E> rotacionarDireita(No<E> noDesbalanceado) {
 
-		No<E> u;
-		No<E> filhoEsquerdaDireita;
+		No<E> novoNoRaiz;
+		No<E> subArvoreDoMeio;
 
-		u = p.getEsquerda();
-		filhoEsquerdaDireita = u.getDireita();
+		novoNoRaiz = noDesbalanceado.getEsquerda();
+		subArvoreDoMeio = novoNoRaiz.getDireita();
 
-		p.setEsquerda(filhoEsquerdaDireita);
-		u.setDireita(p);
+		noDesbalanceado.setEsquerda(subArvoreDoMeio);
+		novoNoRaiz.setDireita(noDesbalanceado);
 
-		p.setAltura();
-		u.setAltura();
+		noDesbalanceado.setAltura();
+		novoNoRaiz.setAltura();
 
-		return u;
+		return novoNoRaiz;
 	}
 
-	private No<E> rotacionarEsquerda(No<E> p) {
+	private No<E> rotacionarEsquerda(No<E> noDesbalanceado) {
 
-		No<E> z;
-		No<E> filhoDireitaEsquerda;
+		No<E> novoNoRaiz;
+		No<E> subArvoreDoMeio;
 
-		z = p.getDireita();
-		filhoDireitaEsquerda = z.getEsquerda();
+		novoNoRaiz = noDesbalanceado.getDireita();
+		subArvoreDoMeio = novoNoRaiz.getEsquerda();
 
-		p.setDireita(filhoDireitaEsquerda);
-		z.setEsquerda(p);
+		noDesbalanceado.setDireita(subArvoreDoMeio);
+		novoNoRaiz.setEsquerda(noDesbalanceado);
 
-		p.setAltura();
-		z.setAltura();
+		noDesbalanceado.setAltura();
+		novoNoRaiz.setAltura();
 
-		return z;
+		return novoNoRaiz;
 	}
 }
