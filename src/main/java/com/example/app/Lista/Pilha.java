@@ -62,14 +62,18 @@ public class Pilha<E> {
 		Pilha<E> copia = new Pilha<>();
 
 		while(!vazia()){
+			//remove o item da pilha original
 			E item = remover();
+			//adiciona o item na pilha temporária
 			tmp.adicionar(item);
 		}
 		while(!tmp.vazia()){
+			//remove o item da pilha temporária
 			E item = tmp.remover();
-
+			//adiciona o item na pilha de cópia
 			copia.adicionar(item);
-			adicionar(item);
+			//restaura a pilha original
+			adicionar(item); 
 		}
 		return copia;
 	}
